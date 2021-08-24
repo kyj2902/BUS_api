@@ -1,0 +1,15 @@
+공공 데이터 포털 광주광역시 버스 노선 정보
+일반 인증키
+uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D
+
+정류소 정보
+일반 인증키
+uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D
+
+공공 데이터 포털 광주광역시 버스 노선, 정류소 정보
+일반 인증키
+uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D
+
+공공 데이터 포털 광주광역시 버스 도착 정보
+일반 인증키
+http://api.gwangju.go.kr/xml/arriveInfo?serviceKey=uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D&BUSSTOP_ID= 2873

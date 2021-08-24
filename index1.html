@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="index.css" rel="stylesheet" />
+    <title>BUS2</title>
+  </head>
+  <body>
+    <h1>정류장을 입력하세요</h1>
+    <form>
+      <input type="search" id="busstop" /><button type="submit">검색</button>
+    </form>
+    <div id="bus">
+      <div class="busname"></div>
+      <div class="busid"></div>
+    </div>
+  </body>
+  <script>
+    axios
+      .get(
+        "https://b252ff7f-36d3-4283-b911-570f8c6175fc.mock.pstmn.io/bus?serviceKey=uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D"
+      )
+      .then(function (result) {
+        console.log("결과 : ", result);
+
+        let busHtml = "";
+        const busstop_list = result.data.STATION_LIST;
+        for (var i = 0; i < busstop_list.length; i++) {
+          const busstop = busstop_list[i];
+          busHtml =
+            busHtml +
+            '<div class="busname">' +
+            "정류장 이름: " +
+            busstop.BUSSTOP_NAME +
+            "</div>" +
+            '<div class="busid">' +
+            "정류장 ID: " +
+            busstop.BUSSTOP_ID +
+            "</div>" +
+            "</br>";
+          console.log(
+            "정류장 이름: " +
+              busstop.BUSSTOP_NAME +
+              ", 정류장 id: " +
+              busstop.BUSSTOP_ID
+          );
+        }
+
+        document.querySelector("#bus").innerHTML = busHtml;
+      })
+      .catch(function (error) {
+        console.log("에러 : ", error);
+      });
+  </script>
+</html>
