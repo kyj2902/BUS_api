@@ -10,15 +10,18 @@
   </head>
   <body>
     <h1>정류장을 입력하세요</h1>
-    <form>
-      <input type="search" id="busstop" /><button type="submit">검색</button>
-    </form>
+    <input id="busstop" /><button onclick="print()">검색</button>
     <div id="bus">
       <div class="busname"></div>
       <div class="busid"></div>
     </div>
   </body>
   <script>
+    function print() {
+      const bus = document.getElementById("busstop").value;
+      console.log(bus);
+    }
+
     axios
       .get(
         "https://b252ff7f-36d3-4283-b911-570f8c6175fc.mock.pstmn.io/bus?serviceKey=uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D"
@@ -30,6 +33,7 @@
         const busstop_list = result.data.STATION_LIST;
         for (var i = 0; i < busstop_list.length; i++) {
           const busstop = busstop_list[i];
+          const busArray = [busstop.BUSSTOP_NAME, busstop.BUSSTOP_ID];
           busHtml =
             busHtml +
             '<div class="busname">' +
@@ -41,12 +45,6 @@
             busstop.BUSSTOP_ID +
             "</div>" +
             "</br>";
-          console.log(
-            "정류장 이름: " +
-              busstop.BUSSTOP_NAME +
-              ", 정류장 id: " +
-              busstop.BUSSTOP_ID
-          );
         }
 
         document.querySelector("#bus").innerHTML = busHtml;
