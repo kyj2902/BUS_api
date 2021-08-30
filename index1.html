@@ -10,47 +10,54 @@
   </head>
   <body>
     <h1>정류장을 입력하세요</h1>
-    <input id="busstop" /><button onclick="print()">검색</button>
+    <input id="busstop" /><button onclick="busid_print()">검색</button>
     <div id="bus">
       <div class="busname"></div>
       <div class="busid"></div>
     </div>
   </body>
   <script>
-    function print() {
-      const bus = document.getElementById("busstop").value;
-      console.log(bus);
-    }
+    function busid_print() {
+      axios
+        .get(
+          "https://b252ff7f-36d3-4283-b911-570f8c6175fc.mock.pstmn.io/bus?serviceKey=uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D"
+        )
+        .then(function (result) {
+          console.log("결과 : ", result);
 
-    axios
-      .get(
-        "https://b252ff7f-36d3-4283-b911-570f8c6175fc.mock.pstmn.io/bus?serviceKey=uG%2BJuWEbMSaye1aNK30LEEj7q%2FlpvJdORLSlG5xGayVkIFFsU%2FM7Tz2fEQcGP0MC1BkmhSpufCkwJOkjHVKn%2Fg%3D%3D"
-      )
-      .then(function (result) {
-        console.log("결과 : ", result);
-
-        let busHtml = "";
-        const busstop_list = result.data.STATION_LIST;
-        for (var i = 0; i < busstop_list.length; i++) {
-          const busstop = busstop_list[i];
-          const busArray = [busstop.BUSSTOP_NAME, busstop.BUSSTOP_ID];
+          var busHtml = "";
+          var busstop_list = result.data.STATION_LIST;
+          var busArray;
+          var busstop;
+          var busid;
+          var bus;
+          for (var i = 0; i < busstop_list.length; i++) {
+            busstop = busstop_list[i];
+            busArray = [busstop.BUSSTOP_NAME, busstop.BUSSTOP_ID];
+            bus = document.getElementById("busstop").value;
+            if (bus === busArray[0]) {
+              bus = busArray[0];
+              busid = busArray[1];
+              console.log("정류장 이름: " + bus + ", 정류장 아이디: " + busid);
+              break;
+            }
+          }
           busHtml =
             busHtml +
             '<div class="busname">' +
             "정류장 이름: " +
-            busstop.BUSSTOP_NAME +
+            bus +
             "</div>" +
             '<div class="busid">' +
             "정류장 ID: " +
-            busstop.BUSSTOP_ID +
+            busid +
             "</div>" +
             "</br>";
-        }
-
-        document.querySelector("#bus").innerHTML = busHtml;
-      })
-      .catch(function (error) {
-        console.log("에러 : ", error);
-      });
+          document.querySelector("#bus").innerHTML = busHtml;
+        })
+        .catch(function (error) {
+          console.log("에러 : ", error);
+        });
+    }
   </script>
 </html>
